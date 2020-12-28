@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .cont{
+            width:50%;
+            border:1px solid red;
+            margin-right: auto;
+            margin-left: auto;
+            margin-top: 5%;
+            
+        }
+
+        div>*{ 
+            padding:5px;
+            border:1px solid green;
+        }
+
+        .flex{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .text-right{
+            text-align: right;
+
+        }
+        .num{
+            font-size:50vh;
+            font-weight: bold;
+            background-color: orange;
+
+
+        }
+        .btn{
+            flex-grow: 1;
+        }
+        
+        
+    </style>
+</head>
+<body>
+    <div class="cont">
+        <div class="score text-right">
+            score:0
+        </div>
+        <div class="num flex">
+            5
+        </div>
+        <div class="actions flex">
+            <div class="btn flex" onclick="clicked('evean')">
+                evean
+            </div>
+            <div class="btn flex" onclick="clicked('odd')" >
+                odd
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let score=0
+        let scoreBox=document.querySelector(".score");
+         let numbox=document.querySelector(".num");
+
+        function clicked(btn_type){
+           let num=numbox.innerHTML.trim();
+           let ans=(num%2==0)?"evean":"odd";
+            (ans===btn_type)?updatescore(1):updatescore(-1);
+            
+            
+        }
+
+        function updatescore(amount){
+            score+=amount;
+            scoreBox.innerHTML=`score:${score}`;
+
+        }
+        function updateNumber(){
+
+            let x=Math.floor(Math.random()*100);
+            document.querySelector(".num").innerHTML=x;
+           
+        }
+
+        
+
+    
+        
+    </script>
+    
+</body>
+</html>
