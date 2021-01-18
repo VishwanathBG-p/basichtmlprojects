@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        .round{
+            width:200px;
+            height:200px;
+             border-radius:50%;
+            border:1px solid black;
+            font-size:20vh;
+            font-weight: bold;
+            background-color: orange;
+
+        }
+
+        h1{
+            text-align: center;
+            font-family: 'Press Start 2P', cursive;
+            background-color: brown;
+        }
+        .container{
+        width: 90%;
+        border:1px solid black;
+        }
+        .flex{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            
+        }
+        div > *{
+        
+        border:1px solid black;
+        }
+        .w{
+            width:50%;
+        }
+        #input{
+            font-size: 30px;
+        }
+        .bg-silver{
+            background-color:silver;
+        }
+    </style>
+     
+
+<body>
+    
+    <div class="container">
+        <div class="text">
+            <h1>GUESS THE WORLD</h1>
+        </div>
+        <div class="word-box flex"> 
+            <div class="round flex">
+                
+            </div>
+            <div class="round flex">
+                
+            </div>
+            <div class="round flex">
+               
+            </div>
+            <div class="round flex">
+              
+            </div>
+            <div class="round flex">
+                
+            </div>
+
+        </div>
+        <div class="empty-box flex bg-silver">
+            <input class="w" id="input"  >
+        
+        </div>
+        <div class="btn-box">
+            <div class="btn flex bg-silver ">
+                SUBMIT
+            </div>
+        </div>
+
+    </div>
+    <script>
+        window.onload=function(){
+
+        let inputBox=document.querySelector("input");
+        let submitbtn=document.querySelector(".btn");
+        
+        let wordbox=document.querySelector(".word-box");
+            let originalworld="HELLO";
+       
+        submitbtn .onclick=function(){
+            let guess=inputBox.value;
+            if(guess==originalworld)
+                alert("correct")
+            else
+                alert("worng")
+            
+            
+        }
+        
+       
+
+       function getRandomIndex(s){
+           return Math.floor(Math.random()*10)%s.length;
+       }
+
+       function jumbledWorld(s){
+        let jumbled="",seen="";
+       while(s.length!=jumbled.length){  
+           let i=getRandomIndex(s);
+           if(seen.indexOf(i)==-1){
+               seen+=i;
+               jumbled+=s[i];
+           }
+       }
+
+       return(jumbled);
+        }
+
+
+        function showWorld(s){
+            let circleHTML="";
+            for(let i=0;i<s.length;i++){
+                circleHTML+= `<div class="round flex">
+                ${s[i]}
+            </div>`
+        }
+        wordbox.innerHTML=circleHTML;
+
+        }
+        let jumbledword=jumbledWorld(originalworld);
+        showWorld(jumbledword);
+
+        }
+        
+    </script>
+    
+</head>
+   
+        
+    
+        
+    
+    
+</body>
+</html>
